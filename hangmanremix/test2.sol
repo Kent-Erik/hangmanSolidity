@@ -43,17 +43,19 @@ contract hangMan {
     }
     
     bool public functionActivated; 
-    string [] public finalWord;
+    string [] finalWord;
 
     function showStats() public {
         uint x = (arrayTestOutput.length);
+        
         if (functionActivated = true) {
             for (uint i=0; i < x; i++) {
                 if (keccak256(abi.encodePacked(arrayTestOutput[i])) == keccak256(abi.encodePacked(failedGuess))) {
                     continue;
                 }
                 else if (keccak256(abi.encodePacked(arrayTestOutput[i])) != keccak256(abi.encodePacked(failedGuess))) {
-                    finalWord[i] = arrayTestOutput[i];
+                    string memory p = arrayTestOutput[i];
+                    finalWord[i] = p;
                 }  
             }
         
@@ -64,12 +66,12 @@ contract hangMan {
         else if (functionActivated = false) {
             for (uint i=0; i < x; i++) {
                 finalWord.push(arrayTestOutput[i]);
-                //arrayTestOutput.pop();
             }
+            for (uint i=0; i < x; i++) {
+            arrayTestOutput.pop();
             functionActivated = true;
+            }
         }
-
-        //return finalWord;
     }
 
     function showFinalWord() public view returns (string [] memory){

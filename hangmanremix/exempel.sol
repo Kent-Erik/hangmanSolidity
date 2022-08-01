@@ -20,10 +20,10 @@ contract hangMan {
         if (functionActivated = true) {
             for (uint i=0; i < x; i++) {
                 if (keccak256(abi.encodePacked(arrayTestOutput[i])) == keccak256(abi.encodePacked(failedGuess))) {
-                    continue;
+                    finalWord.push(failedGuess);
                 }
                 else if (keccak256(abi.encodePacked(arrayTestOutput[i])) != keccak256(abi.encodePacked(failedGuess))) {
-                    finalWord[i] = arrayTestOutput[i];
+                    finalWord.push(arrayTestOutput[i]);
                 }  
             }
         
@@ -46,3 +46,4 @@ contract hangMan {
         return finalWord;
     }
 }
+
